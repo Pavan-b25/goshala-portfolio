@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KLE Design Thinking Social Innovation — Gopal Goshala</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #E8651A;
+    --deep: #1A1208;
+    --cream: #FAF5EC;
+    --gold: #C9941A;
+    --muted: #7A6A52;
+    --pale: #F2EAD8;
+    --green: #3D6B4F;
+    --accent: #D4420A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--deep); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--deep);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(232,101,26,0.18) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,148,26,0.12) 0%, transparent 50%);
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    border: 1px solid rgba(232,101,26,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .hero h1 em { font-style: italic; color: var(--saffron); }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(250,245,236,0.55);
+    letter-spacing: 0.06em;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .hero-meta { display: flex; flex-direction: column; gap: 10px; }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(250,245,236,0.7);
+  }
+  .hero-meta-item::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--saffron);
+    flex-shrink: 0;
+  }
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    padding: 80px;
+  }
+  .hero-emblem {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,101,26,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .hero-emblem::before {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,148,26,0.2);
+  }
+  .emblem-inner { text-align: center; }
+  .cow-icon {
+    font-size: 72px;
+    display: block;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 20px rgba(232,101,26,0.4));
+  }
+  .emblem-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--cream);
+    font-style: italic;
+  }
+  .emblem-location {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .scroll-hint span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(250,245,236,0.4);
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(232,101,26,0.6), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* ── TEAM SECTION ── */
+  .team-section {
+    background: var(--deep);
+    padding: 70px 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(232,101,26,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .team-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .team-heading {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .team-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .team-course {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(250,245,236,0.45);
+    letter-spacing: 0.12em;
+    text-align: right;
+  }
+  .team-table-wrap { overflow-x: auto; }
+  .team-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .team-table thead tr {
+    background: rgba(232,101,26,0.15);
+    border-bottom: 1px solid rgba(232,101,26,0.4);
+  }
+  .team-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 14px 20px;
+    text-align: left;
+    font-weight: 500;
+  }
+  .team-table td {
+    padding: 14px 20px;
+    color: rgba(250,245,236,0.8);
+    border-bottom: 1px solid rgba(250,245,236,0.06);
+    vertical-align: middle;
+  }
+  .team-table tr:last-child td { border-bottom: none; }
+  .team-table tr:hover td { background: rgba(232,101,26,0.06); color: var(--cream); }
+  .team-table td:first-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: rgba(232,101,26,0.35);
+    font-weight: 900;
+    width: 50px;
+  }
+  .team-table td:nth-child(2) { font-weight: 500; color: var(--cream); }
+  .team-table td:nth-child(3) { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--gold); }
+  .team-table td:nth-child(4) { font-family: 'DM Mono', monospace; font-size: 12px; color: rgba(250,245,236,0.55); }
+  .team-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--saffron), transparent);
+    margin-top: 50px;
+  }
+
+  /* ── P1 SECTION ── */
+  .p1-section {
+    background: var(--pale);
+    padding: 80px;
+    border-left: 4px solid var(--saffron);
+    margin: 0;
+    position: relative;
+  }
+  .p1-inner { max-width: 1200px; margin: 0 auto; }
+  .p1-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .p1-label::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--saffron);
+    opacity: 0.5;
+  }
+  .p1-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.5vw, 34px);
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .p1-body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #3A2E1E;
+    max-width: 860px;
+  }
+  .p1-body p { margin-bottom: 16px; }
+  .p1-body p:last-child { margin-bottom: 0; }
+
+  /* ── SECTION WRAPPERS ── */
+  .section { padding: 100px 80px; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--saffron);
+    opacity: 0.5;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 48px;
+    color: var(--deep);
+  }
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(232,101,26,0.3), transparent);
+    margin: 0 80px;
+  }
+
+  /* ── COMMUNITY CONTEXT ── */
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .context-body p { font-size: 16px; line-height: 1.85; color: #3A2E1E; margin-bottom: 20px; }
+  .context-body p strong { color: var(--deep); }
+  .context-sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .stat-card {
+    background: var(--deep);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--saffron), var(--gold));
+  }
+  .stat-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .stat-card-value { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--cream); line-height: 1.4; }
+
+  /* ── STAKEHOLDERS ── */
+  .stakeholder-bg { background: var(--pale); padding: 100px 0; }
+  .stakeholders-wrap { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+  .stakeholder-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .stakeholder-card {
+    background: white;
+    padding: 32px 24px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .stakeholder-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(26,18,8,0.1); z-index: 1; position: relative; }
+  .s-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+  .s-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--deep); }
+  .s-role { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── PLACE FRAMEWORK (observations) ── */
+  .obs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 48px; }
+  .obs-card {
+    border-left: 3px solid var(--saffron);
+    padding: 24px 24px 24px 28px;
+    background: white;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 4px 16px rgba(26,18,8,0.06);
+  }
+  .obs-type { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--saffron); margin-bottom: 12px; }
+  .obs-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .obs-list li { font-size: 14px; color: #3A2E1E; line-height: 1.5; padding-left: 16px; position: relative; }
+  .obs-list li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 12px; }
+  .sensory-strip {
+    background: var(--deep);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .sensory-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; flex-shrink: 0; }
+  .sensory-items { display: flex; gap: 24px; flex-wrap: wrap; }
+  .sensory-item { font-size: 13px; color: rgba(250,245,236,0.75); display: flex; align-items: center; gap: 8px; }
+  .sensory-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--saffron); flex-shrink: 0; }
+
+  /* ── PROBLEM ── */
+  .problem-bg {
+    background: var(--deep);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .problem-bg::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,101,26,0.08) 0%, transparent 70%);
+  }
+  .problem-wrap { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+  .problem-wrap .section-label { color: var(--gold); }
+  .problem-wrap .section-label::after { background: var(--gold); }
+  .problem-wrap .section-title { color: var(--cream); }
+  .problem-statement {
+    background: rgba(232,101,26,0.12);
+    border: 1px solid rgba(232,101,26,0.3);
+    border-radius: 8px;
+    padding: 36px 40px;
+    margin-bottom: 60px;
+    position: relative;
+  }
+  .problem-statement::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: rgba(232,101,26,0.15);
+    position: absolute;
+    top: -20px; left: 24px;
+    line-height: 1;
+  }
+  .problem-statement p {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--cream);
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+  .whys-chain { display: flex; flex-direction: column; gap: 0; }
+  .why-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(250,245,236,0.07);
+  }
+  .why-row:last-child { border-bottom: none; }
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: rgba(232,101,26,0.25);
+    line-height: 1;
+    padding-top: 4px;
+    text-align: right;
+  }
+  .why-text { font-size: 15px; color: rgba(250,245,236,0.8); line-height: 1.7; padding-top: 6px; }
+  .why-text strong { color: var(--saffron); font-weight: 500; }
+
+  /* ── VOICES ── */
+  .voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .voice-card {
+    background: white;
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(26,18,8,0.07);
+    position: relative;
+  }
+  .voice-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--saffron);
+    opacity: 0.2;
+    position: absolute;
+    top: 16px; left: 24px;
+    line-height: 1;
+  }
+  .voice-text { font-size: 15px; line-height: 1.75; color: #3A2E1E; font-style: italic; padding-top: 20px; position: relative; z-index: 1; }
+  .voice-from { margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+  /* ── SOLUTION ── */
+  .solution-bg { background: var(--pale); padding: 100px 0; }
+  .solution-wrap { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+  .solutions-compared { display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; margin-bottom: 60px; }
+  .solutions-list-card { background: white; border-radius: 8px; padding: 32px; box-shadow: 0 4px 16px rgba(26,18,8,0.06); }
+  .solutions-list-card h4 { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+  .sol-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #F0E8D6; font-size: 14px; color: #3A2E1E; }
+  .sol-item:last-child { border-bottom: none; }
+  .sol-dot { width: 8px; height: 8px; border-radius: 50%; background: #C5B89A; flex-shrink: 0; }
+  .sol-dot.selected { background: var(--saffron); box-shadow: 0 0 0 3px rgba(232,101,26,0.2); }
+  .sol-item.chosen { color: var(--deep); font-weight: 500; }
+  .selected-solution-card {
+    background: var(--deep);
+    border-radius: 8px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .selected-solution-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--saffron), var(--gold));
+  }
+  .ss-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--cream); font-weight: 700; }
+  .ss-bold-statement {
+    background: rgba(232,101,26,0.15);
+    border-left: 3px solid var(--saffron);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+  .ss-reasons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ss-reason { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(250,245,236,0.75); line-height: 1.5; }
+  .ss-reason::before { content: '✓'; color: var(--saffron); font-size: 12px; margin-top: 1px; flex-shrink: 0; }
+
+  /* ── PESTLE ── */
+  .pestle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: #E0D4BC;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .pestle-cell { background: white; padding: 28px; }
+  .pestle-cell.full-row { grid-column: 1 / -1; background: var(--deep); }
+  .pestle-header { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: var(--saffron); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .pestle-body { font-size: 13px; color: #3A2E1E; line-height: 1.6; }
+  .pestle-cell.full-row .pestle-header { font-size: 11px; color: var(--gold); font-family: 'DM Mono', monospace; letter-spacing: 0.2em; margin-bottom: 12px; }
+  .pestle-cell.full-row .pestle-body { color: rgba(250,245,236,0.7); font-size: 14px; }
+
+  /* ── PILOT ── */
+  .pilot-timeline { display: grid; grid-template-columns: 1fr 4px 1fr; gap: 0 40px; position: relative; }
+  .timeline-line { background: linear-gradient(to bottom, var(--saffron), var(--gold)); border-radius: 2px; position: relative; }
+  .timeline-dot {
+    width: 16px; height: 16px;
+    background: var(--saffron);
+    border-radius: 50%;
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--saffron);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .timeline-dot.d1 { top: 20px; }
+  .timeline-dot.d2 { top: calc(25% + 20px); }
+  .timeline-dot.d3 { top: calc(50% + 20px); }
+  .timeline-dot.d4 { top: calc(75% + 20px); }
+  .pilot-left { text-align: right; }
+  .pilot-right { text-align: left; }
+  .pilot-step { padding: 20px 0 40px; }
+  .pilot-step-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--saffron); text-transform: uppercase; margin-bottom: 8px; }
+  .pilot-step h4 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--deep); }
+  .pilot-step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── FEEDBACK ── */
+  .feedback-bg { background: var(--deep); padding: 100px 0; }
+  .feedback-wrap { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+  .feedback-wrap .section-label { color: var(--gold); }
+  .feedback-wrap .section-label::after { background: var(--gold); }
+  .feedback-wrap .section-title { color: var(--cream); }
+  .feedback-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .feedback-card {
+    background: rgba(250,245,236,0.05);
+    border: 1px solid rgba(250,245,236,0.1);
+    border-radius: 8px;
+    padding: 32px;
+  }
+  .feedback-card-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+  .feedback-card-body { font-size: 15px; color: rgba(250,245,236,0.8); line-height: 1.75; }
+  .iteration-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+  .iteration-list li { display: flex; gap: 14px; font-size: 14px; color: rgba(250,245,236,0.75); line-height: 1.5; align-items: flex-start; }
+  .iter-num { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: rgba(232,101,26,0.4); line-height: 1; flex-shrink: 0; width: 24px; }
+
+  /* ── IMPACT ── */
+  .impact-rings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #E0D4BC; border-radius: 8px; overflow: hidden; }
+  .impact-ring { padding: 40px 32px; text-align: center; }
+  .impact-ring:nth-child(1) { background: var(--saffron); }
+  .impact-ring:nth-child(2) { background: var(--gold); }
+  .impact-ring:nth-child(3) { background: var(--green); }
+  .ring-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(250,245,236,0.7); margin-bottom: 20px; }
+  .ring-items { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .ring-items li { font-size: 14px; color: rgba(250,245,236,0.9); line-height: 1.5; padding: 10px 14px; background: rgba(0,0,0,0.12); border-radius: 4px; text-align: left; }
+
+  /* ── REFLECTIONS ── */
+  .reflections-bg { background: var(--pale); padding: 100px 0; }
+  .reflections-wrap { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+  .reflection-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .reflection-card { background: white; border-radius: 8px; padding: 36px 28px; box-shadow: 0 4px 20px rgba(26,18,8,0.06); border-top: 3px solid transparent; }
+  .reflection-card:nth-child(1) { border-top-color: var(--saffron); }
+  .reflection-card:nth-child(2) { border-top-color: var(--gold); }
+  .reflection-card:nth-child(3) { border-top-color: var(--green); }
+  .rc-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+  .rc-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .rc-text { font-size: 15px; line-height: 1.75; color: #3A2E1E; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--deep); padding: 60px 80px; text-align: center; border-top: 1px solid rgba(250,245,236,0.07); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--cream); margin-bottom: 8px; }
+  .footer-sub { font-size: 13px; color: rgba(250,245,236,0.4); font-family: 'DM Mono', monospace; letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO — GOPAL GOSHALA (FIRST) ══════════════ -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="tag">KLE Design Thinking Social Innovation</span>
+    <h1>Gopal<br><em>Goshala</em></h1>
+    <p class="hero-sub">Our Journey · Rayapur, Hubballi</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Community-Centred Design</div>
+      <div class="hero-meta-item">Volunteer Coordination System</div>
+      <div class="hero-meta-item">Social Innovation</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-emblem">
+      <div class="emblem-inner">
+        <span class="cow-icon">🐄</span>
+        <div class="emblem-text">Gopal Goshala</div>
+        <div class="emblem-location">Rayapur · Hubballi</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════ TEAM SECTION (SECOND) ══════════════ -->
+<section class="team-section">
+  <div class="team-top">
+    <div>
+      <div class="team-heading">KLE Design Thinking Social Innovation</div>
+      <div class="team-title">P1 Team 3</div>
+    </div>
+    <div class="team-course">Academic Year 2025–26<br>Gopal Goshala Project</div>
+  </div>
+  <div class="team-table-wrap">
+    <table class="team-table">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Name</th>
+          <th>Roll No</th>
+          <th>Email ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Pavan S B</td><td>1604</td><td>01fe25bec187@kletech.ac.in</td></tr>
+        <tr><td>2</td><td>Pranav B</td><td>1601</td><td>01fe25bec184@kletech.ac.in</td></tr>
+        <tr><td>3</td><td>Prajwal H</td><td>1613</td><td>01fe25bec198@kletech.ac.in</td></tr>
+        <tr><td>4</td><td>Sinchana</td><td>1632</td><td>01fe25bec149@kletech.ac.in</td></tr>
+        <tr><td>5</td><td>Nandini M J</td><td>1630</td><td>01fe25bec126@kletech.ac.in</td></tr>
+        <tr><td>6</td><td>Sachin</td><td>1631</td><td>01fe25bec150@kletech.ac.in</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="team-divider"></div>
+</section>
+
+<!-- ══════════════ P1 DIV ══════════════ -->
+<div class="p1-section">
+  <div class="p1-inner">
+    <div class="p1-label">P1 — Community Introduction</div>
+    <div class="p1-title">About Gopal Goshala</div>
+    <div class="p1-body">
+        <p>
+            Gopal Goshala in Rayapur, Hubballi is a shelter that cares for cows with the help of caretakers, volunteers, students, donors, and management members. Daily activities such as feeding, cleaning, and providing medical care are supported through donations and volunteer efforts. </p>
+
+           <p> The goshala community believes in seva (service), and many people from nearby colleges and local areas come forward to help. Volunteers regularly participate in different activities and contribute their time for the welfare of the cows.</p>
+
+            <p></p>Even with limited manpower, the caretakers work hard to manage daily operations. The main challenge is not the lack of volunteers, but the difficulty in coordinating their efforts effectively. A simple system to connect volunteers with the tasks that need to be completed can help improve the overall functioning of the goshala.<p></p>
+</div>
+</div>
+
+<!-- ══════════════ COMMUNITY CONTEXT ══════════════ -->
+<div class="section">
+  <div class="section-label">Understanding Community</div>
+  <h2 class="section-title">Community Overview</h2>
+  <div class="context-grid">
+    <div class="context-body">
+      <p>Gopal Goshala is run through collective community effort. Caretakers maintain daily routines while volunteers from nearby colleges and localities offer their time and energy. Donors provide the financial and material support that keeps operations going.</p>
+      <p>The spirit of shared service runs deep here. People come not out of obligation but out of genuine care for the cows. The management oversees planning and decision-making, working closely with caretakers to ensure nothing falls through the cracks.</p>
+      <p>The core challenge the goshala faces is not one of motivation or resources — it is one of <strong>coordination</strong>. Matching willing volunteers to the right tasks at the right time is where the gap lies.</p>
+    </div>
+    <div class="context-sidebar">
+      <div class="stat-card">
+        <div class="stat-card-label">Location</div>
+        <div class="stat-card-value">Rayapur, Hubballi, Karnataka</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Core Philosophy</div>
+        <div class="stat-card-value">Selfless service to cows and community</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Community Support</div>
+        <div class="stat-card-value">Students, donors, local volunteers &amp; caretakers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Key Challenge</div>
+        <div class="stat-card-value">Coordination of volunteers, not shortage of them</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════ STAKEHOLDERS ══════════════ -->
+<div class="stakeholder-bg">
+  <div class="stakeholders-wrap">
+    <div class="section-label">Who We Met</div>
+    <h2 class="section-title">Stakeholders</h2>
+    <div class="stakeholder-grid">
+      <div class="stakeholder-card">
+        <span class="s-icon">🧑‍🌾</span>
+        <div class="s-name">Caretakers</div>
+        <div class="s-role">Daily operations, feeding, cleaning &amp; medical care</div>
+      </div>
+      <div class="stakeholder-card">
+        <span class="s-icon">🙋</span>
+        <div class="s-name">Volunteers</div>
+        <div class="s-role">Students &amp; locals who give their time for the cows</div>
+      </div>
+      <div class="stakeholder-card">
+        <span class="s-icon">💛</span>
+        <div class="s-name">Donors</div>
+        <div class="s-role">Financial &amp; material support for goshala operations</div>
+      </div>
+      <div class="stakeholder-card">
+        <span class="s-icon">🏛️</span>
+        <div class="s-name">Management</div>
+        <div class="s-role">Planning, oversight &amp; decision-making for the goshala</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PLACE FRAMEWORK ══════════════ -->
+<div class="section">
+  <div class="section-label">PLACE Framework</div>
+  <h2 class="section-title">What We Saw</h2>
+  <div class="obs-grid">
+    <div class="obs-card">
+      <div class="obs-type">Physical Space</div>
+      <ul class="obs-list">
+        <li>Large open sheds housing many cows</li>
+        <li>Feeding areas and water troughs</li>
+        <li>Medical care corner maintained by staff</li>
+      </ul>
+    </div>
+    <div class="obs-card">
+      <div class="obs-type">People &amp; Activity</div>
+      <ul class="obs-list">
+        <li>Only 2 people working in goshala</li>
+        <li>Volunteers arriving without clear task assignment</li>
+        <li>Management coordinating informally via calls</li>
+      </ul>
+    </div>
+    <div class="obs-card">
+      <div class="obs-type">Patterns Noticed</div>
+      <ul class="obs-list">
+        <li>Morning &amp; evening routines most activity-heavy</li>
+        <li>Mismatch between volunteer availability and task needs</li>
+        <li>No structured communication channel in place</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sensory-strip">
+    <span class="sensory-label">Sensory Details</span>
+    <div class="sensory-items">
+      <span class="sensory-item"><span class="sensory-dot"></span>Smell of hay &amp; mud</span>
+      <span class="sensory-item"><span class="sensory-dot"></span>Sounds of mooing &amp; water</span>
+      <span class="sensory-item"><span class="sensory-dot"></span>Warmth of the cattle sheds</span>
+      <span class="sensory-item"><span class="sensory-dot"></span>Busy yet calm atmosphere</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════ CORE PROBLEM ══════════════ -->
+<div class="problem-bg">
+  <div class="problem-wrap">
+    <div class="section-label">Core Problem</div>
+    <h2 class="section-title">What We Found</h2>
+    <div class="problem-statement">
+      <p>Most care giving activities in the goshala, such as moving cows, feeding, and cleaning, are carried out during morning and evening routine hours. These time-intensive activities are mainly handled by only a small number of caretakers. The smooth functioning of the goshala depends on maintaining these repetitive routines consistently every day.</p>
+    </div>
+
+    <div class="whys-chain">
+      <div class="why-row">
+        <div class="why-num">W1</div>
+        <div class="why-text">Because volunteers show up without knowing what tasks need to be done — <strong>there is no structured system to communicate daily needs.</strong></div>
+      </div>
+      <div class="why-row">
+        <div class="why-num">W2</div>
+        <div class="why-text">Caretakers focus on physical tasks and have no bandwidth to onboard or direct volunteers during busy hours.</div>
+      </div>
+      <div class="why-row">
+        <div class="why-num">W3</div>
+        <div class="why-text">The goshala has grown in volunteer footfall but not in organisational tools to match that scale.</div>
+      </div>
+      <div class="why-row">
+        <div class="why-num">W4</div>
+        <div class="why-text">Coordination happens informally — word of mouth, phone calls — which breaks down under pressure.</div>
+      </div>
+      <div class="why-row">
+        <div class="why-num">W5</div>
+        <div class="why-text">Because there is no lightweight mechanism that fits into the existing rhythm of daily routines — <strong>a simple matching system between tasks and available volunteers is missing.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ COMMUNITY VOICES ══════════════ -->
+<div class="section">
+  <div class="section-label">Community Voices</div>
+  <h2 class="section-title">What They Told Us</h2>
+  <div class="voices-grid">
+    <div class="voice-card">
+      <p class="voice-text">We have people who want to help every day, but they don't know where to start or what to do when they arrive.</p>
+      <div class="voice-from">— Goshala Caretaker</div>
+    </div>
+    <div class="voice-card">
+      <p class="voice-text">I came twice but felt lost. No one told me what was needed. I would come more often if there was a way to know in advance.</p>
+      <div class="voice-from">— College Volunteer</div>
+    </div>
+    <div class="voice-card">
+      <p class="voice-text">The cows need consistent care. If even two or three more volunteers showed up at the right time, it would make a huge difference.</p>
+      <div class="voice-from">— Management Member</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════ SOLUTION ══════════════ -->
+<div class="solution-bg">
+  <div class="solution-wrap">
+    <div class="section-label">Our Solution</div>
+    <h2 class="section-title">What We Designed</h2>
+    <div class="solutions-compared">
+      <div class="solutions-list-card">
+        <h4>Options Explored</h4>
+        <div class="sol-item"><span class="sol-dot"></span>Digital app for tracking</div>
+        <div class="sol-item"><span class="sol-dot"></span>Printed schedule boards</div>
+        <div class="sol-item chosen"><span class="sol-dot selected"></span>Volunteer Pre-Registration System</div>
+        <div class="sol-item"><span class="sol-dot"></span>WhatsApp broadcast system</div>
+        <div class="sol-item"><span class="sol-dot"></span>Token-based check-in system</div>
+      </div>
+      <div class="selected-solution-card">
+        <div class="ss-title">Volunteer Pre-Registration System</div>
+        <div class="ss-bold-statement">
+          We are not making a new coping mechanism — we are improvising an existing coping mechanism of the goshala.
+        </div>
+        <div class="ss-reasons">
+          <div class="ss-reason">Volunteers register in advance for specific tasks and time slots</div>
+          <div class="ss-reason">Caretakers know exactly who is coming and for what</div>
+          <div class="ss-reason">Works within existing daily routines without disruption</div>
+          <div class="ss-reason">No digital literacy required — accessible to everyone</div>
+          <div class="ss-reason">Both caretakers and volunteers benefit directly</div>
+          <div class="ss-reason">Volunteers kept directly in the design process from the start</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PESTLE -->
+    <div class="section-label" style="margin-top:60px;">Context Analysis</div>
+    <h2 class="section-title">PESTLE Analysis</h2>
+    <div class="pestle-grid">
+      <div class="pestle-cell full-row">
+        <div class="pestle-header">Framework Overview</div>
+        <div class="pestle-body">We mapped the broader environment around Gopal Goshala to understand the forces that shape volunteer coordination and community participation.</div>
+      </div>
+      <div class="pestle-cell">
+        <div class="pestle-header">Economic</div>
+        <div class="pestle-body">Goshala runs on donations; paid coordination staff is not feasible. The solution must be low-cost and sustainable on community goodwill alone.</div>
+      </div>
+      <div class="pestle-cell">
+        <div class="pestle-header">Social</div>
+        <div class="pestle-body">Strong local culture of service. Students and residents are willing to participate — the gap is in structured engagement, not motivation.</div>
+      </div>
+      <div class="pestle-cell">
+        <div class="pestle-header">Technological</div>
+        <div class="pestle-body">Smartphone penetration is moderate. Older caretakers are more comfortable with physical boards than apps; the solution bridges both worlds.</div>
+      </div>
+      <div class="pestle-cell">
+        <div class="pestle-header">Environmental</div>
+        <div class="pestle-body">Cow welfare directly tied to consistent daily routines. Gaps in care have immediate, visible impact on animal health and goshala cleanliness.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PILOT ══════════════ -->
+<div class="section">
+  <div class="section-label">Testing</div>
+  <h2 class="section-title">Our Pilot Plan</h2>
+  <div class="pilot-timeline">
+    <div class="pilot-left">
+      <div class="pilot-step">
+        <div class="pilot-step-label">Phase 01</div>
+        <h4>Map the Routines</h4>
+        <p>Document morning and evening tasks in detail with caretaker input.</p>
+      </div>
+      <div class="pilot-step">
+        <div class="pilot-step-label">Phase 03</div>
+        <h4>Deploy the System</h4>
+        <p>Launch the pre-registration system at the goshala entry; train caretakers on reviewing sign-ups daily.</p>
+      </div>
+    </div>
+    <div class="timeline-line">
+      <div class="timeline-dot d1"></div>
+      <div class="timeline-dot d2"></div>
+      <div class="timeline-dot d3"></div>
+      <div class="timeline-dot d4"></div>
+    </div>
+    <div class="pilot-right">
+      <div class="pilot-step">
+        <div class="pilot-step-label">Phase 02</div>
+        <h4>Co-Design with Volunteers</h4>
+        <p>Run a workshop with frequent volunteers to shape the registration format together.</p>
+      </div>
+      <div class="pilot-step">
+        <div class="pilot-step-label">Phase 04</div>
+        <h4>Observe &amp; Iterate</h4>
+        <p>Track volunteer participation over 2 weeks and refine based on feedback from both caretakers and volunteers.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ FEEDBACK ══════════════ -->
+<div class="feedback-bg">
+  <div class="feedback-wrap">
+    <div class="section-label">Learning &amp; Iteration</div>
+    <h2 class="section-title">Feedback &amp; Refinements</h2>
+    <div class="feedback-grid">
+      <div class="feedback-card">
+        <div class="feedback-card-label">What the Community Said</div>
+        <div class="feedback-card-body">Caretakers appreciated the clarity that pre-registration would bring. Volunteers felt more confident about arriving knowing tasks would be pre-assigned. Management saw it as easy to maintain without extra overhead.</div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-card-label">Key Iterations</div>
+        <ul class="iteration-list">
+          <li><span class="iter-num">1</span>Added time-slot selection so volunteers choose morning or evening shift during registration</li>
+          <li><span class="iter-num">2</span>Simplified task names to be instantly understandable without explanation</li>
+          <li><span class="iter-num">3</span>Added a caretaker confirmation step to close the feedback loop</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ IMPACT ══════════════ -->
+<div class="section">
+  <div class="section-label">Potential Impact</div>
+  <h2 class="section-title">What This Changes</h2>
+  <div class="impact-rings">
+    <div class="impact-ring">
+      <div class="ring-label">For Caretakers</div>
+      <ul class="ring-items">
+        <li>Reduced coordination burden each morning</li>
+        <li>Volunteers arrive task-ready</li>
+        <li>More time focused on animal welfare</li>
+      </ul>
+    </div>
+    <div class="impact-ring">
+      <div class="ring-label">For Volunteers</div>
+      <ul class="ring-items">
+        <li>Clear purpose on every visit</li>
+        <li>Sense of belonging and contribution</li>
+        <li>Easier to commit and return regularly</li>
+      </ul>
+    </div>
+    <div class="impact-ring">
+      <div class="ring-label">For the Goshala</div>
+      <ul class="ring-items">
+        <li>More consistent daily operations</li>
+        <li>Stronger volunteer retention</li>
+        <li>Model replicable in other shelters</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ REFLECTIONS ══════════════ -->
+<div class="reflections-bg">
+  <div class="reflections-wrap">
+    <div class="section-label">What We Learned</div>
+    <h2 class="section-title">Our Reflections</h2>
+    <div class="reflection-cards">
+      <div class="reflection-card">
+        <span class="rc-icon">🔍</span>
+        <div class="rc-label">On Observation</div>
+        <p class="rc-text">Spending time at the goshala without an agenda revealed insights no survey could have captured. The real problem appeared only when we watched, not when we asked.</p>
+      </div>
+      <div class="reflection-card">
+        <span class="rc-icon">🤝</span>
+        <div class="rc-label">On Collaboration</div>
+        <p class="rc-text">We kept volunteers directly in the process — helping both caretakers and volunteers shape the solution together. This ensured tools fit naturally into how people already work and contribute.</p>
+      </div>
+      <div class="reflection-card">
+        <span class="rc-icon">🌱</span>
+        <div class="rc-label">On Simplicity</div>
+        <p class="rc-text">The best solutions don't add complexity — they remove friction. A simple registration system beats a full app when the community values ease and trust over features.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="footer-logo">KLE Design Thinking Social Innovation</div>
+  <div class="footer-sub">Gopal Goshala · Rayapur, Hubballi · Our Journey</div>
+</footer>
+
+</body>
+</html>
